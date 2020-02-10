@@ -25,34 +25,33 @@ class App extends React.Component {
   render () {
 
     return (
-     
+    
         <div className="App">
           <Navbar />
           <h2>Welcome to Git Movies!</h2>
           <Login />
-          <BrowserRouter>
+          <SearchForm findThatMovie={this.findThatMovie}/>
             <Switch>
-              <Route path="/search" >
+              {/* <Route path="/login" >
+                  <Login />
+              </Route> */}
+              {/* <Route path="/search" >
                   <SearchForm findThatMovie={this.findThatMovie}/>
-              </Route>
-              <Route path="/results" >
-                  <MovieResults movies={this.state.movies}/>
-              </Route>
-              <Route path="/movies/:id" >
+              </Route> */}
+              <Route
+               path="/movies"
+               render={routerProps => <MovieResults {...routerProps} movies={this.state.movies}/>}           
+             />
+
+              {/* <Route path="/movies/:id" >
                   <MovieDetails />
-              </Route>
+              </Route> */}
             </Switch>
-          </BrowserRouter>
         </div>
      
     );
 
   }
-
-
-
-
-
 }
 
 export default App;

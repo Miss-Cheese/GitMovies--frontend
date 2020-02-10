@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, Router} from 'react-router-dom'
 
 
 const link = {
@@ -10,9 +11,15 @@ const link = {
     color: 'white',
   }
 
-const Navbar = () =>
-  <div>
-    Nabar will be here
-  </div>;
+const Navbar = () => {
+  return (
+  <div className="navbar">
+    {/* <Link to="/login">Login</Link>
+    <Link to="/movies">Movies Page</Link> */}
+    {/* <Link to="/user">User Page</Link> */}
+  </div>
+  )
+}
 
 export default Navbar
+
