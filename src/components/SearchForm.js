@@ -17,6 +17,9 @@ class SearchForm extends React.Component {
         event.preventDefault()
         let newQuery = this.state.searchTerm 
         this.props.findThatMovie(newQuery)
+        this.setState({
+            searchTerm: ""
+        })
     }
 
 

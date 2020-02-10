@@ -41,6 +41,24 @@ h1 {
   text-transform: capitalize;
 }
 
+.movie-poster {
+  padding: 50px;
+  margin-right: 50px;
+}
+
+.container {
+  display: flex; 
+}
+
+.movie-text-block {
+  color: #ffffff;
+  text-align: left;
+  margin-left: 50px;
+  max-width: 700px;
+  font-family: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  padding: 20px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
