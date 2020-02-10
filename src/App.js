@@ -11,7 +11,8 @@ class App extends React.Component {
 
   state = {
     loggedIn: false,
-    movies: []
+    movies: [],
+    detailedMovie: {}
 }
   loginUser = () => {
     this.setState({
@@ -27,17 +28,27 @@ class App extends React.Component {
       }))
   }
 
+  showMovieDetails = (movieId) => {
+    
+    let targetMovie = this.state.movies.find(movie => movie.id === movieId)
+    this.setState({
+      detailedMovie: targetMovie
+    })
+
+  }
+
   render () {
 
-    console.log(this.state.loggedIn)
+    // console.log(this.state.detailedMovie)
 
     return (
       
         <div className="App">
           <Navbar />
-          <h2>Welcome to Git Movies!</h2>
-          <Login />
-          <SearchForm findThatMovie={this.findThatMovie}/>
+          <h1>Welcome to Git Movies!</h1>
+          <Login loginUser={this.loginUser} loggedIn={this.state.loggedIn}/>
+          <SearchForm findThatMovie={this.findThatMovie} loggedIn={this.state.loggedIn}/>
+          <MovieDetails detailedMovie={this.state.detailedMovie} />
             <Switch>
               {/* <Route path="/login" >
                   <Login />
@@ -47,12 +58,13 @@ class App extends React.Component {
               </Route> */}
               <Route
                path="/movies"
-               render={routerProps => <MovieResults {...routerProps} movies={this.state.movies}/>}           
+               render={routerProps => <MovieResults {...routerProps} movies={this.state.movies} showMovieDetails={this.showMovieDetails}/>}           
              />
-
-              {/* <Route path="/movies/:id" >
-                  <MovieDetails />
-              </Route> */}
+              
+              {/* path="/movies/:id" 
+              render={routerProps => <MovieDetails {...routerProps} detailedMovie={this.state.detailedMovie} />}   */}
+              
+              
             </Switch>
         </div>
      
