@@ -1,7 +1,5 @@
 import React from 'react';
 
-// Login & Signup
-
 class Login extends React.Component {
     state = {
       email: '',
@@ -15,18 +13,33 @@ class Login extends React.Component {
     }
   
     onSubmit =  () => {
-      console.log("Submit functionality will be here")
+      let loginDetails = this.state
+      
+      fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(loginDetails)
+      })
+      this.props.loginUser()
     }
   
     render() {
 
       return (
-        <div className="login-form">
-          <input type="text" name='email' placeholder='Email' onChange={e => this.onChange(e)} value={this.state.email} />
-          <input type="text" name='password' placeholder='Password' type='password' onChange={e => this.onChange(e)} value={this.state.password} />
-          <br />
-          <button onClick={() => this.onSubmit()} type="primary">Login</button>
+        <div>
+          {!this.props.loggedIn && 
+           <div className="login-form">
+           <input type="text" name='email' placeholder='Email' onChange={this.onChange} value={this.state.email} />
+           <input type="text" name='password' placeholder='Password' type='password' onChange={this.onChange} value={this.state.password} />
+           <br />
+           <button onClick={() => this.onSubmit()} type="primary">Login/Signup</button>
+         </div>
+          }
         </div>
+       
       );
     }
   }

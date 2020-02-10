@@ -5,7 +5,7 @@ import Login from './components/Login';
 import SearchForm from './components/SearchForm';
 import MovieResults from './components/MovieResults';
 import MovieDetails from './components/MovieDetails'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
 
@@ -13,6 +13,11 @@ class App extends React.Component {
     loggedIn: false,
     movies: []
 }
+  loginUser = () => {
+    this.setState({
+      loggedIn: true
+    })
+  }
 
   findThatMovie = (newQuery) => {
       fetch(`https://api.themoviedb.org/3/search/movie?api_key=d0c033000912e5602757518af0d41cce&query=${newQuery}`)
@@ -24,8 +29,10 @@ class App extends React.Component {
 
   render () {
 
+    console.log(this.state.loggedIn)
+
     return (
-    
+      
         <div className="App">
           <Navbar />
           <h2>Welcome to Git Movies!</h2>
