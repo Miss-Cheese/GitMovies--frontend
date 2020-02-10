@@ -32,32 +32,33 @@ class App extends React.Component {
     console.log(this.state.loggedIn)
 
     return (
-     
+      
         <div className="App">
           <Navbar />
-          <h1>Welcome to Git Movies!</h1>
-          <Login loginUser={this.loginUser} loggedIn={this.state.loggedIn}/>
-          <SearchForm loggedIn={this.state.loggedIn} findThatMovie={this.findThatMovie}/>
-          <Router>
+          <h2>Welcome to Git Movies!</h2>
+          <Login />
+          <SearchForm findThatMovie={this.findThatMovie}/>
             <Switch>
-              <Route path="/movies" >
-                  <MovieResults movies={this.state.movies}/>
-              </Route>
-              <Route path="/movies/:id" >
+              {/* <Route path="/login" >
+                  <Login />
+              </Route> */}
+              {/* <Route path="/search" >
+                  <SearchForm findThatMovie={this.findThatMovie}/>
+              </Route> */}
+              <Route
+               path="/movies"
+               render={routerProps => <MovieResults {...routerProps} movies={this.state.movies}/>}           
+             />
+
+              {/* <Route path="/movies/:id" >
                   <MovieDetails />
-              </Route>
+              </Route> */}
             </Switch>
-          </Router>
         </div>
      
     );
 
   }
-
-
-
-
-
 }
 
 export default App;
