@@ -23,7 +23,7 @@ class Login extends React.Component {
         },
         body: JSON.stringify(loginDetails)
       })
-      this.props.loginUser()
+      this.props.loginUser(loginDetails)
     }
   
     render() {

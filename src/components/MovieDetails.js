@@ -13,7 +13,7 @@ function MovieDetails (props) {
                 <h3>{release_date}</h3>
                 <h3>{vote_average}</h3>
                 <p>{overview}</p>
-                <MovieReviews />
+                <MovieReviews detailedMovie={props.detailedMovie} user_id={props.user_id}/>
             </div>
             <div className="movie-poster">
                 <img src= {"https://image.tmdb.org/t/p/w500" + poster_path}></img>
