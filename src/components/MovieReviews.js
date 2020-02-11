@@ -3,12 +3,14 @@ import React from 'react';
 class MovieReviews extends React.Component {
 
     state = {
-        reviewText: ""
+        text: "",
+        user_id: this.props.user_id,
+        movie_id: this.props.detailedMovie.id
     }
 
     handleChange = (event) => {
         this.setState({
-            reviewText: event.target.value
+            text: event.target.value
         })
     }
 
@@ -28,12 +30,12 @@ class MovieReviews extends React.Component {
     }
 
     render () {
-        
+        console.log(this.state)
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <h4>What do you think of this movie? Let us know!</h4>
-                    <textarea onChange={this.handleChange} value={this.state.reviewText} />
+                    <textarea onChange={this.handleChange} value={this.state.text} />
                     <br></br>
                     <input type="submit" value="Submit Your Review"></input>
                 </form>

@@ -11,13 +11,22 @@ class App extends React.Component {
 
   state = {
     loggedIn: false,
+    user_id: "",
     movies: [],
     detailedMovie: {}
   }
-  loginUser = () => {
-    this.setState({
-      loggedIn: true
-    })
+
+  loginUser = (loginDetails) => {
+    
+    fetch("http://localhost:3000/users")
+      .then(resp => resp.json())
+      .then(data => {
+        let loggedInUser = data.find(user => user.email === loginDetails.email )
+        this.setState({
+          loggedIn: true,
+          user_id: loggedInUser.id
+        })
+      })
   }
 
   findThatMovie = (newQuery) => {
@@ -39,15 +48,15 @@ class App extends React.Component {
 
   findMovie = (routerID) => {
     let foundMovie = this.state.movies.find(movie => movie.id === parseInt(routerID))
-    console.log(foundMovie)
+    // console.log(foundMovie)
     return foundMovie
   }
 
   render() {
-    console.log(this.state.movies)
+    // console.log(this.state.movies)
     // console.log(this.state.detailedMovie)
-    console.log(this.history)
-    // console.log(routerProps)
+    // console.log(this.history)
+    // console.log(this.state)
     return (
 
       <div className="App">
@@ -74,7 +83,8 @@ class App extends React.Component {
               return movie ? (
                 <MovieDetails
                   {...routerProps}
-                  detailedMovie={this.state.detailedMovie} />
+                  detailedMovie={this.state.detailedMovie} 
+                  user_id={this.state.user_id}/>
               ) : (<p>loading selected movie</p>)
             }}
           />
