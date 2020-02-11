@@ -12,7 +12,7 @@ class Login extends React.Component {
       });
     }
   
-    onSubmit =  () => {
+    onSubmit =  (props) => {
       let loginDetails = this.state
       
       fetch("http://localhost:3000/users", {

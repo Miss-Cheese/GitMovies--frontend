@@ -52,12 +52,9 @@ class App extends React.Component {
           <SearchForm findThatMovie={this.findThatMovie} loggedIn={this.state.loggedIn}/>
           <MovieDetails detailedMovie={this.state.detailedMovie} />
             <Switch>
-              {/* <Route path="/" 
-                  render={routerPorps => <Login loginUser={this.loginUser} loggedIn={this.state.loggedIn}/>}
-              /> */}
-              {/* <Route path="/profile"
-                  render={routerProps => <UserProfile />}
-              /> */}
+              <Route path="/profile"
+                  render={routerProps => <UserProfile {...routerProps}/>}
+              />
               <Route
                path="/movies"
                render={routerProps => <MovieResults {...routerProps} movies={this.state.movies} showMovieDetails={this.showMovieDetails}/>}           
