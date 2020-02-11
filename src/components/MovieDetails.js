@@ -3,7 +3,6 @@ import MovieReviews from './MovieReviews'
 
 function MovieDetails (props) {
 
-    // console.log(props.detailedMovie)
    let  { title, release_date, vote_average, overview, poster_path } = props.detailedMovie
 
     return (
