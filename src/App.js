@@ -4,8 +4,10 @@ import Navbar from './components/Navbar'
 import Login from './components/Login';
 import SearchForm from './components/SearchForm';
 import MovieResults from './components/MovieResults';
-import MovieDetails from './components/MovieDetails'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import MovieDetails from './components/MovieDetails';
+import MovieReviews from './components/MovieReviews';
+import UserProfile from './components/UserProfile';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
 
@@ -42,7 +44,7 @@ class App extends React.Component {
     // console.log(this.state.detailedMovie)
 
     return (
-      
+      <BrowserRouter>
         <div className="App">
           <Navbar />
           <h1>Welcome to Git Movies!</h1>
@@ -50,26 +52,24 @@ class App extends React.Component {
           <SearchForm findThatMovie={this.findThatMovie} loggedIn={this.state.loggedIn}/>
           <MovieDetails detailedMovie={this.state.detailedMovie} />
             <Switch>
-              {/* <Route path="/login" >
-                  <Login />
-              </Route> */}
-              {/* <Route path="/search" >
-                  <SearchForm findThatMovie={this.findThatMovie}/>
-              </Route> */}
+              {/* <Route path="/" 
+                  render={routerPorps => <Login loginUser={this.loginUser} loggedIn={this.state.loggedIn}/>}
+              /> */}
+              {/* <Route path="/profile"
+                  render={routerProps => <UserProfile />}
+              /> */}
               <Route
                path="/movies"
                render={routerProps => <MovieResults {...routerProps} movies={this.state.movies} showMovieDetails={this.showMovieDetails}/>}           
-             />
-              
-              {/* path="/movies/:id" 
-              render={routerProps => <MovieDetails {...routerProps} detailedMovie={this.state.detailedMovie} />}   */}
-              
-              
+              />
+              {/* <Route
+              path="/movies/:id" 
+              render={routerProps => <MovieDetails {...routerProps} detailedMovie={this.state.detailedMovie} />}
+              /> */}
             </Switch>
         </div>
-     
+      </BrowserRouter>
     );
-
   }
 }
 
