@@ -6,7 +6,7 @@ const link = {
     width: '100px',
     padding: '5px',
     margin: '0 6px 6px',
-    background: 'ivory',
+    background: 'white',
     textDecoration: 'none',
     color: 'black'
   }
