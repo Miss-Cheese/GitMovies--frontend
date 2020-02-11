@@ -4,19 +4,20 @@ import {Link, Router} from 'react-router-dom'
 
 const link = {
     width: '100px',
-    padding: '12px',
+    padding: '5px',
     margin: '0 6px 6px',
-    background: 'blue',
+    background: 'ivory',
     textDecoration: 'none',
-    color: 'white',
+    color: 'black'
   }
 
 const Navbar = () => {
   return (
   <div className="navbar">
-    {/* <Link to="/login">Login</Link>
-    <Link to="/movies">Movies Page</Link> */}
-    {/* <Link to="/user">User Page</Link> */}
+    |<Link to="/login" style={link} > Login </Link>|
+    |<Link to="/profile" style={link}> User Profile </Link>|
+    |<Link to="/movies" style={link}> Movies Page </Link>|
+    |<Link to="/logout" style={link}> Logout </Link>|
   </div>
   )
 }
