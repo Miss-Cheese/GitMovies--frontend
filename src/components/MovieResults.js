@@ -1,9 +1,10 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom'
 
 function MovieResults (props) {
 
     let displayedMovies = props.movies.slice(0,5)
-
+    
     
     return (
         <div>
@@ -19,6 +20,6 @@ function MovieResults (props) {
     )
 }
 
-export default MovieResults
+export default withRouter(MovieResults)
 
 
