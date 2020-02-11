@@ -17,7 +17,7 @@ class MovieReviews extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         
-        let newReview = this.state
+        let newReview = {review: [this.state, this.props.detailedMovie]}
 
         fetch("http://localhost:3000/reviews", {
             method: "POST",
@@ -30,7 +30,7 @@ class MovieReviews extends React.Component {
     }
 
     render () {
-        console.log(this.state)
+        console.log(this.props.detailedMovie)
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
