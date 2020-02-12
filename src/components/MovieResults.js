@@ -5,7 +5,6 @@ function MovieResults (props) {
 
     let displayedMovies = props.movies.slice(0,5)
     
-    
     return (
         <div>
             <ul>
