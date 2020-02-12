@@ -7,6 +7,7 @@ class MovieDetails extends React.Component {
         dbMovies: []
     }
 
+
     fetchdbMovies = () => {
         fetch(`http://localhost:3000/movies/`)
         .then(resp => resp.json())
