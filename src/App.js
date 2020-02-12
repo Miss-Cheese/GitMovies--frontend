@@ -7,6 +7,7 @@ import MovieResults from './components/MovieResults';
 import MovieDetails from './components/MovieDetails'
 import { BrowserRouter as Router, withRouter, Route, Switch } from 'react-router-dom';
 
+
 class App extends React.Component {
 
   state = {
@@ -30,7 +31,7 @@ class App extends React.Component {
   }
 
   findThatMovie = (newQuery) => {
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=d0c033000912e5602757518af0d41cce&query=${newQuery}`)
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${newQuery}`)
       .then(response => response.json())
       .then(movieData => this.setState({
         movies: movieData.results
@@ -48,15 +49,11 @@ class App extends React.Component {
 
   findMovie = (routerID) => {
     let foundMovie = this.state.movies.find(movie => movie.id === parseInt(routerID))
-    // console.log(foundMovie)
     return foundMovie
   }
 
   render() {
-    // console.log(this.state.movies)
-    // console.log(this.state.detailedMovie)
-    // console.log(this.history)
-    // console.log(this.state)
+
     return (
 
       <div className="App">
