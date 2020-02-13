@@ -75,6 +75,28 @@ class App extends React.Component {
     return foundMovie
   }
 
+  deleteReviewHandler = (id) => {
+    fetch(`http://localhost:3000/reviews/${id}`, {
+      method: "DELETE"
+    })
+    let newReviews = this.state.reviews.filter(review => review.id !== id)
+    this.setState({
+      reviews: newReviews
+    })
+  }
+
+  editReview = (review) => {
+    console.log('trying to edit', review)
+    // fetch(`http://localhost:3000/reviews/${id}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     'content-type':'applicaton/json',
+    //     accepts:'application/json'
+    //   },
+    //   body: JSON.stringify()
+    // })
+  }
+
   render() {
 
     return (
@@ -96,6 +118,7 @@ class App extends React.Component {
               <MovieResults 
                 {...routerProps} 
                 movies={this.state.movies} 
+                deleteReviewHandler={this.deleteReviewHandler}
                 showMovieDetails={this.showMovieDetails} />}
           />
           <Route
@@ -109,6 +132,8 @@ class App extends React.Component {
                   detailedMovie={this.state.detailedMovie} 
                   reviews={this.state.reviews}
                   dbMovies={this.state.dbMovies}
+                  editReview={this.editReview}
+                  deleteReviewHandler={this.deleteReviewHandler}
                   user_id={this.state.user_id}/>
               ) : (<p>loading selected movie</p>)
             }}
