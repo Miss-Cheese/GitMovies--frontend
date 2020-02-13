@@ -25,7 +25,7 @@ class MovieReviews extends React.Component {
     
     handleSubmit = (event, movieId) => {
         event.preventDefault()
-        let movieData
+        let targetMovie
         let newReview = {review: [this.state.review, this.props.detailedMovie]}
         fetch("http://localhost:3000/reviews", {
             method: "POST",
