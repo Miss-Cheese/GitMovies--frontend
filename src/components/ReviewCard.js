@@ -2,13 +2,11 @@ import React from 'react'
 
 function ReviewCard (props) {
 
-  
-
-  console.log(props)
   return (
-      <div>
-        {props.text}
-      </div>
+    <ul>
+      <li>{props.text}</li>
+    </ul>
+      
   )
 }
 

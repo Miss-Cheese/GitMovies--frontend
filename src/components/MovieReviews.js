@@ -24,7 +24,7 @@ class MovieReviews extends React.Component {
     
     handleSubmit = (event, movieId) => {
         event.preventDefault()
-        let targetMovie
+        let movieData
         let newReview = {review: [this.state.review, this.props.detailedMovie]}
         fetch("http://localhost:3000/reviews", {
             method: "POST",
@@ -35,22 +35,17 @@ class MovieReviews extends React.Component {
             body: JSON.stringify(newReview)
           })
           .then(resp => resp.json())
-          .then(data => {
-            targetMovie = this.props.dbMovies.find(movie => movie.id === data.movie_id)
-            console.log(targetMovie.reviews)
+          .then(data => {console.log(data, movieId)
+            // movieData = this.props.dbMovies.find(movie => movie.id === data.movie_id)
+            // this.setState({
+            //     targetMovie: movieData
+            // })
         })
     }
 
     render () {
-        // this.props.dbMovies.find(movie => movie.id === )
-        // let dbReviews = this.props.dbMovies.map(movie => console.log(movie.reviews))
-        // console.log(dbReviews)
-        // let dbReviews = this.props.dbMovies.map(movie => {
-        //     return movie.reviews
-        // })
-        console.log(this.props.dbMovies)
-        // debugger
-        // let displayedReviews = this.props.dbMovies.forEach(movie => {movie.reviews.map(review => <ReviewCard key={review.id} {...review}/>)});
+        console.log(this.props.detailedMovie)
+        let displayedReviews = this.props.reviews.map(review => <ReviewCard key={review.id} {...review}/>)
         return (
             
             <div>
@@ -60,7 +55,8 @@ class MovieReviews extends React.Component {
                     <br></br>
                     <input type="submit" value="Submit Your Review"></input>
                 </form>
-                {/* {displayedReviews} */}
+                Reviews:
+                {displayedReviews}
             </div>
         )
     }

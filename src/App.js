@@ -14,7 +14,9 @@ class App extends React.Component {
     loggedIn: false,
     user_id: "",
     movies: [],
-    detailedMovie: {}
+    detailedMovie: {},
+    dbMovies: [],
+    reviews: []
   }
 
   loginUser = (loginDetails) => {
@@ -30,8 +32,29 @@ class App extends React.Component {
       })
   }
 
+  fetchdbMovies = () => {
+    fetch(`http://localhost:3000/movies/`)
+    .then(resp => resp.json())
+    .then(data => this.setState({
+        dbMovies: data
+    }))
+  }
+
+  fetchReviews = () => {
+      fetch(`http://localhost:3000/reviews`)
+      .then(resp => resp.json())
+      .then(data => this.setState({
+      reviews: data
+      }))
+  }
+
+  componentDidMount(){
+      this.fetchdbMovies()
+      this.fetchReviews()
+  }
+  
   findThatMovie = (newQuery) => {
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${newQuery}`)
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=d0c033000912e5602757518af0d41cce&query=${newQuery}`)
       .then(response => response.json())
       .then(movieData => this.setState({
         movies: movieData.results
@@ -70,7 +93,10 @@ class App extends React.Component {
             exact
             path="/movies"
             render={routerProps =>
-              <MovieResults {...routerProps} movies={this.state.movies} showMovieDetails={this.showMovieDetails} />}
+              <MovieResults 
+                {...routerProps} 
+                movies={this.state.movies} 
+                showMovieDetails={this.showMovieDetails} />}
           />
           <Route
             exact
@@ -81,6 +107,8 @@ class App extends React.Component {
                 <MovieDetails
                   {...routerProps}
                   detailedMovie={this.state.detailedMovie} 
+                  reviews={this.state.reviews}
+                  dbMovies={this.state.dbMovies}
                   user_id={this.state.user_id}/>
               ) : (<p>loading selected movie</p>)
             }}
