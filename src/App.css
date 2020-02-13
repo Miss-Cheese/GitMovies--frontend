@@ -32,6 +32,8 @@ body {
   background-image: url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
 }
 
+
+
 input[type=text], input[type=password] {
   width: 200px;
   height: 30px;
@@ -40,7 +42,7 @@ input[type=text], input[type=password] {
   padding-left:5px;
   margin-left:-5px;
   margin-top:3px;
-  border-radius:0px 3px 3px 0px;
+  border-radius:3px 3px 3px 3px;
 
 }
 
@@ -51,9 +53,26 @@ input[type=text], input[type=password] {
   border-radius: 1mm;
   border-color: black;
   color: black;
-  text-shadow: #dbe1ec;
 }
 
+.search-form-button {
+  width: 120px;
+  height: 36px;
+  background-color: rgb(160,12,12);
+  border-radius: 1mm;
+  border-color: black;
+  color: black;
+}
+
+.submit-review-button {
+  width: 120px;
+  height: 20px;
+  background-color: rgb(160,12,12);
+  border-radius: 1mm;
+  border-color: black;
+  color: black;
+  text-shadow: #dbe1ec;
+}
 
 /* 
 input {

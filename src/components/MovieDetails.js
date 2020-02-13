@@ -11,8 +11,8 @@ class MovieDetails extends React.Component {
             <div className="container">
                 <div className="movie-text-block">
                     <h1>{title}</h1>
-                    <h3>{release_date}</h3>
-                    <h3>{vote_average}</h3>
+                    <h3>Release Date: {release_date}</h3>
+                    <h3>Average Rating: {vote_average}</h3>
                     <p>{overview}</p>
                     <MovieReviews 
                         reviews={this.props.reviews} 

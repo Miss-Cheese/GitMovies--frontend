@@ -52,7 +52,6 @@ class MovieReviews extends React.Component {
     }
 
     render () {
-        console.log(this.state.isClicked)
         let displayedReviews = this.props.reviews.map(review => 
             <ReviewCard 
                 editReview={this.props.editReview} 
@@ -64,6 +63,7 @@ class MovieReviews extends React.Component {
                 reviewChange={this.reviewChange}
                 reviewUpdate={this.reviewUpdate}
                 {...review}/>)
+                                                      
         return (
             
             <div>
@@ -71,7 +71,7 @@ class MovieReviews extends React.Component {
                     <h4>What do you think of this movie? Let us know!</h4>
                     <textarea onChange={this.handleChange} value={this.state.text} />
                     <br></br>
-                    <input type="submit" value="Submit Your Review"></input>
+                    <input className="submit-review-button" type="submit" value="Submit Your Review"></input>
                 </form>
                 Reviews:
                 {displayedReviews}
