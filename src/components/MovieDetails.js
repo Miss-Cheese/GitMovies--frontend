@@ -14,7 +14,13 @@ class MovieDetails extends React.Component {
                     <h3>{release_date}</h3>
                     <h3>{vote_average}</h3>
                     <p>{overview}</p>
-                    <MovieReviews reviews={this.props.reviews} dbMovies={this.props.dbMovies} detailedMovie={this.props.detailedMovie} user_id={this.props.user_id}/>
+                    <MovieReviews 
+                        reviews={this.props.reviews} 
+                        dbMovies={this.props.dbMovies} 
+                        editReview={this.props.editReview}
+                        detailedMovie={this.props.detailedMovie} 
+                        deleteReviewHandler={this.props.deleteReviewHandler}
+                        user_id={this.props.user_id}/>
                 </div>
                 <div className="movie-poster">
                     <img src= {"https://image.tmdb.org/t/p/w500" + poster_path}></img>

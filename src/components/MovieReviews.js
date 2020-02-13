@@ -9,7 +9,8 @@ class MovieReviews extends React.Component {
             user_id: this.props.user_id,
             movie_id: this.props.detailedMovie.id
         },
-        targetMovie: {}
+        targetMovie: {},
+        isClicked: false
     }
     
     handleChange = (event) => {
@@ -36,16 +37,33 @@ class MovieReviews extends React.Component {
           })
           .then(resp => resp.json())
           .then(data => {console.log(data, movieId)
-            // movieData = this.props.dbMovies.find(movie => movie.id === data.movie_id)
-            // this.setState({
-            //     targetMovie: movieData
-            // })
         })
     }
 
+    editClickHandler = () => {
+        console.log('click handling')
+        this.setState({
+            isClicked: !this.state.isClicked
+        })
+    }
+
+    reviewUpdate = (newReview) => {
+        console.log("Editing review", newReview)
+    }
+
     render () {
-        console.log(this.props.detailedMovie)
-        let displayedReviews = this.props.reviews.map(review => <ReviewCard key={review.id} {...review}/>)
+        console.log(this.state.isClicked)
+        let displayedReviews = this.props.reviews.map(review => 
+            <ReviewCard 
+                editReview={this.props.editReview} 
+                isClicked={this.state.isClicked}
+                deleteReviewHandler={this.props.deleteReviewHandler} 
+                key={review.id} 
+                review={this.state.review}
+                editClickHandler={this.editClickHandler}
+                reviewChange={this.reviewChange}
+                reviewUpdate={this.reviewUpdate}
+                {...review}/>)
         return (
             
             <div>
