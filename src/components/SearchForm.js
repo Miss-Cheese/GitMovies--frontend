@@ -27,11 +27,11 @@ class SearchForm extends React.Component {
 
     render () {
         return (     
-            <div>
+            <div >
                 {this.props.loggedIn && 
                     <form onSubmit={this.submitHandler}>
                         <input onChange={this.changeHandler} type="text" value={this.state.searchTerm} placeholder="Search Movie"></input>
-                        <input type="submit" value="Find That Movie!"></input>
+                        <input className="search-form-button" type="submit" value="Find That Movie!"></input>
                     </form>}
              </div>
         )

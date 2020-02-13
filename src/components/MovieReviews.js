@@ -35,17 +35,16 @@ class MovieReviews extends React.Component {
             body: JSON.stringify(newReview)
           })
           .then(resp => resp.json())
-          .then(data => {console.log(data, movieId)
-            // movieData = this.props.dbMovies.find(movie => movie.id === data.movie_id)
-            // this.setState({
-            //     targetMovie: movieData
-            // })
+          .then(data => {
+            targetMovie = this.props.dbMovies.find(movie => movie.id === data.movie_id)
+            console.log(targetMovie)
         })
     }
 
     render () {
         console.log(this.props.detailedMovie)
         let displayedReviews = this.props.reviews.map(review => <ReviewCard key={review.id} {...review}/>)
+
         return (
             
             <div>
@@ -53,7 +52,7 @@ class MovieReviews extends React.Component {
                     <h4>What do you think of this movie? Let us know!</h4>
                     <textarea onChange={this.handleChange} value={this.state.text} />
                     <br></br>
-                    <input type="submit" value="Submit Your Review"></input>
+                    <input className="submit-review-button" type="submit" value="Submit Your Review"></input>
                 </form>
                 Reviews:
                 {displayedReviews}
