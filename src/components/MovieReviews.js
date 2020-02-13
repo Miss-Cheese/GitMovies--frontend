@@ -24,7 +24,7 @@ class MovieReviews extends React.Component {
     
     handleSubmit = (event, movieId) => {
         event.preventDefault()
-        let movieData
+        let targetMovie
         let newReview = {review: [this.state.review, this.props.detailedMovie]}
         fetch("http://localhost:3000/reviews", {
             method: "POST",
@@ -37,12 +37,12 @@ class MovieReviews extends React.Component {
           .then(resp => resp.json())
           .then(data => {
             targetMovie = this.props.dbMovies.find(movie => movie.id === data.movie_id)
-            console.log(targetMovie)
+            // console.log(targetMovie)
         })
     }
 
     render () {
-        console.log(this.props.detailedMovie)
+        // console.log(this.props.detailedMovie)
         let displayedReviews = this.props.reviews.map(review => <ReviewCard key={review.id} {...review}/>)
 
         return (

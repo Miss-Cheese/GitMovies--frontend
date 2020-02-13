@@ -2,6 +2,13 @@ import React from 'react'
 
 
 class User extends React.Component{
+
+  state = {
+    email: '',
+    password: '',
+    editClicked: false,
+    deleteClicked: false
+  }
   
   render(){
     return(

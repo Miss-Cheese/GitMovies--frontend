@@ -5,8 +5,8 @@ class MovieDetails extends React.Component {
 
     render(){
        let  { title, release_date, vote_average, overview, poster_path } = this.props.detailedMovie
-       console.log(this.props.dbMovies)
-       console.log(this.props.reviews)
+    //    console.log(this.props.dbMovies)
+    //    console.log(this.props.reviews)
         return (
             <div className="container">
                 <div className="movie-text-block">
