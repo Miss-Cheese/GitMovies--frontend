@@ -3,26 +3,10 @@ import MovieReviews from './MovieReviews'
 
 class MovieDetails extends React.Component {
 
-    state ={
-        dbMovies: []
-    }
-
-
-    fetchdbMovies = () => {
-        fetch(`http://localhost:3000/movies/`)
-        .then(resp => resp.json())
-        .then(data => this.setState({
-            dbMovies: data
-        }))
-    }
-
-    componentDidMount(){
-        this.fetchdbMovies()
-    }
-
     render(){
        let  { title, release_date, vote_average, overview, poster_path } = this.props.detailedMovie
-       
+       console.log(this.props.dbMovies)
+       console.log(this.props.reviews)
         return (
             <div className="container">
                 <div className="movie-text-block">
@@ -30,11 +14,10 @@ class MovieDetails extends React.Component {
                     <h3>Release Date: {release_date}</h3>
                     <h3>Average Rating: {vote_average}</h3>
                     <p>{overview}</p>
-                    <MovieReviews dbMovies={this.state.dbMovies} detailedMovie={this.props.detailedMovie} user_id={this.props.user_id}/>
+                    <MovieReviews reviews={this.props.reviews} dbMovies={this.props.dbMovies} detailedMovie={this.props.detailedMovie} user_id={this.props.user_id}/>
                 </div>
                 <div className="movie-poster">
                     <img src= {"https://image.tmdb.org/t/p/w500" + poster_path}></img>
-                    {/* <img src= {props.detailedMovie.poster_path ? "https://image.tmdb.org/t/p/w500" + props.detailedMovie.poster_path : "https://cdn4.wpbeginner.com/wp-content/uploads/2013/04/wp404error.jpg"} alt="movie poster"></img> */}
                 </div>
             </div>
         )

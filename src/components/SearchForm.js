@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom'
 
 class SearchForm extends React.Component {
 
@@ -15,6 +16,7 @@ class SearchForm extends React.Component {
     
     submitHandler = (event) => {
         event.preventDefault()
+        this.props.history.push('/movies')
         let newQuery = this.state.searchTerm 
         this.props.findThatMovie(newQuery)
         this.setState({
@@ -36,4 +38,4 @@ class SearchForm extends React.Component {
     }
 }
 
-export default SearchForm
+export default withRouter(SearchForm)
