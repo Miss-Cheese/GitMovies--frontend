@@ -37,7 +37,7 @@ class MovieReviews extends React.Component {
           .then(resp => resp.json())
           .then(data => {
             targetMovie = this.props.dbMovies.find(movie => movie.id === data.movie_id)
-            console.log(targetMovie.reviews)
+            console.log(targetMovie)
         })
     }
 
@@ -48,7 +48,7 @@ class MovieReviews extends React.Component {
         // let dbReviews = this.props.dbMovies.map(movie => {
         //     return movie.reviews
         // })
-        console.log(this.props.dbMovies)
+        // console.log(this.props.dbMovies)
         // debugger
         // let displayedReviews = this.props.dbMovies.forEach(movie => {movie.reviews.map(review => <ReviewCard key={review.id} {...review}/>)});
         return (
@@ -58,7 +58,7 @@ class MovieReviews extends React.Component {
                     <h4>What do you think of this movie? Let us know!</h4>
                     <textarea onChange={this.handleChange} value={this.state.text} />
                     <br></br>
-                    <input type="submit" value="Submit Your Review"></input>
+                    <input className="submit-review-button" type="submit" value="Submit Your Review"></input>
                 </form>
                 {/* {displayedReviews} */}
             </div>
