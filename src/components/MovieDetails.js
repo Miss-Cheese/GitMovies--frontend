@@ -18,19 +18,17 @@ class MovieDetails extends React.Component {
 
     componentDidMount(){
         this.fetchdbMovies()
-        console.log(this.state.dbMovies)
     }
 
     render(){
-        console.log(this.state.dbMovies)
        let  { title, release_date, vote_average, overview, poster_path } = this.props.detailedMovie
        
         return (
             <div className="container">
                 <div className="movie-text-block">
                     <h1>{title}</h1>
-                    <h3>{release_date}</h3>
-                    <h3>{vote_average}</h3>
+                    <h3>Release Date: {release_date}</h3>
+                    <h3>Average Rating: {vote_average}</h3>
                     <p>{overview}</p>
                     <MovieReviews dbMovies={this.state.dbMovies} detailedMovie={this.props.detailedMovie} user_id={this.props.user_id}/>
                 </div>
