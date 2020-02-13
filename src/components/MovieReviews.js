@@ -25,7 +25,6 @@ class MovieReviews extends React.Component {
     
     handleSubmit = (event, movieId) => {
         event.preventDefault()
-        let targetMovie
         let newReview = {review: [this.state.review, this.props.detailedMovie]}
         fetch("http://localhost:3000/reviews", {
             method: "POST",
@@ -41,7 +40,6 @@ class MovieReviews extends React.Component {
     }
 
     editClickHandler = () => {
-        console.log('click handling')
         this.setState({
             isClicked: !this.state.isClicked
         })

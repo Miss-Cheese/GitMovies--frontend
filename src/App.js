@@ -59,6 +59,8 @@ class App extends React.Component {
       .then(movieData => this.setState({
         movies: movieData.results
       }))
+      // go through every movie in state and query the backend
+      // this.state.movies => check if they exist in the db and if yes, give me their Active Record ID
   }
 
   showMovieDetails = (movieId) => {

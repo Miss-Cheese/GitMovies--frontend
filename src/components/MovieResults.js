@@ -4,6 +4,8 @@ import MovieDetails from './MovieDetails'
 
 class MovieResults extends React.Component {
 
+    // check if those movies are already in our database
+
     render(){
         let displayedMovies = this.props.movies.slice(0,5)
         return(
@@ -18,9 +20,7 @@ class MovieResults extends React.Component {
                     )}
             </ul>
         </div>
-
         )
-    
     }
 }
 
