@@ -13,16 +13,13 @@ class ReviewCard extends React.Component {
   }
   
 
-  submitReview = (e, id) => {
+  submitReview = (e) => {
     e.preventDefault()
     let newestReview = this.state.review
     this.props.reviewUpdate(newestReview)
-    console.log(id)
   }
 
   render () {
-
-    // console.log("New review", this.state.review)
 
     return (
       <ul>
@@ -30,7 +27,7 @@ class ReviewCard extends React.Component {
           <button onClick={this.props.editClickHandler}>edit</button>
           <button onClick={(e) => this.props.deleteReviewHandler(this.props.id)}>delete</button>
           {this.props.isClicked && 
-          <form onSubmit={this.submitReview(this.props.id)}>
+          <form onSubmit={(e) => this.submitReview(this.props.id)}>
             <input type="text" value={this.state.review} onChange={this.updateReview}></input>
             <input type="submit" value="Update"></input>
           </form>

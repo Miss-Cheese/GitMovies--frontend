@@ -19,6 +19,7 @@ class MovieDetails extends React.Component {
                         editReview={this.props.editReview}
                         detailedMovie={this.props.detailedMovie} 
                         deleteReviewHandler={this.props.deleteReviewHandler}
+                        fetchReviews={this.props.fetchReviews}
                         user_id={this.props.user_id}/>
                 </div>
                 <div className="movie-poster">

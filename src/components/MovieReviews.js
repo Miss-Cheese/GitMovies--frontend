@@ -23,7 +23,7 @@ class MovieReviews extends React.Component {
         })
     }
     
-    handleSubmit = (event, movieId) => {
+    handleSubmit = (event) => {
         event.preventDefault()
         let newReview = {review: [this.state.review, this.props.detailedMovie]}
         fetch("http://localhost:3000/reviews", {
@@ -35,8 +35,16 @@ class MovieReviews extends React.Component {
             body: JSON.stringify(newReview)
           })
           .then(resp => resp.json())
-          .then(data => {console.log(data, movieId)
-        })
+        //   .then(responseData => console.log(responseData))
+          .then(() => this.setState({
+              ...this.state,
+              review: {
+                  ...this.state.review,
+                  text: ""
+              }
+          }))
+          .then(() => this.props.fetchReviews())
+          
     }
 
     editClickHandler = () => {
@@ -67,7 +75,7 @@ class MovieReviews extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <h4>What do you think of this movie? Let us know!</h4>
-                    <textarea onChange={this.handleChange} value={this.state.text} />
+                    <textarea onChange={this.handleChange} value={this.state.review.text} />
                     <br></br>
                     <input className="submit-review-button" type="submit" value="Submit Your Review"></input>
                 </form>
