@@ -77,6 +77,7 @@ class App extends React.Component {
     return foundMovie
   }
 
+  
   deleteReviewHandler = (id) => {
     fetch(`http://localhost:3000/reviews/${id}`, {
       method: "DELETE"
@@ -136,6 +137,7 @@ class App extends React.Component {
                   dbMovies={this.state.dbMovies}
                   editReview={this.editReview}
                   deleteReviewHandler={this.deleteReviewHandler}
+                  fetchReviews={this.fetchReviews}
                   user_id={this.state.user_id}/>
               ) : (<p>loading selected movie</p>)
             }}
