@@ -26,6 +26,7 @@ class MovieReviews extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         let newReview = {review: [this.state.review, this.props.detailedMovie]}
+        console.log(newReview)
         fetch("http://localhost:3000/reviews", {
             method: "POST",
             headers: {
@@ -34,8 +35,10 @@ class MovieReviews extends React.Component {
             },
             body: JSON.stringify(newReview)
           })
-          .then(resp => resp.json())
-        //   .then(responseData => console.log(responseData))
+          .then(response => response.json())
+          .then(responseData => this.setState({
+              targetMovie: responseData
+          }))
           .then(() => this.setState({
               ...this.state,
               review: {
@@ -58,7 +61,12 @@ class MovieReviews extends React.Component {
     }
 
     render () {
-        let displayedReviews = this.props.reviews.map(review => 
+        let targetMovieReviews = this.props.reviews.filter(review => review.movie_id === this.state.targetMovie.movie_id)
+        // let targetMovieReviews = this.props.dbMovies.filter(movie => movie.movie_id === this.state.targetMovie.movie_id)
+
+        // console.log(this.props.dbMovies)
+
+        let displayedReviews = targetMovieReviews.map(review => 
             <ReviewCard 
                 editReview={this.props.editReview} 
                 isClicked={this.state.isClicked}
