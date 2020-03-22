@@ -26,7 +26,7 @@ class MovieReviews extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault()
         let newReview = {review: [this.state.review, this.props.detailedMovie]}
-        console.log(newReview)
+        // console.log(newReview)
         fetch("http://localhost:3000/reviews", {
             method: "POST",
             headers: {
@@ -56,15 +56,40 @@ class MovieReviews extends React.Component {
         })
     }
 
-    reviewUpdate = (newReview) => {
-        console.log("Editing review", newReview)
+    updateReviewInState = (updatedReview) => {
+        this.setState({
+            ...this.state,
+            review:{
+            ...this.state.review,
+                text: updatedReview,
+                movie_id: this.state.targetMovie.id
+            }
+        })
+    }
+
+    updateReviewInDb = (reviewId) => {    
+        fetch(`http://localhost:3000/reviews/${reviewId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+            body: JSON.stringify({
+                text: this.state.review
+            })
+        })
+        .then(response => response.json())
+        .then(responseData => console.log(responseData))
+        .catch((error) => {
+            console.error('There has been a problem with your fetch operation:', error);
+          });
     }
 
     render () {
         let targetMovieReviews = this.props.reviews.filter(review => review.movie_id === this.state.targetMovie.movie_id)
         // let targetMovieReviews = this.props.dbMovies.filter(movie => movie.movie_id === this.state.targetMovie.movie_id)
 
-        // console.log(this.props.dbMovies)
+        // console.log(this.state.review)
 
         let displayedReviews = targetMovieReviews.map(review => 
             <ReviewCard 
@@ -74,12 +99,13 @@ class MovieReviews extends React.Component {
                 key={review.id} 
                 review={this.state.review}
                 editClickHandler={this.editClickHandler}
-                reviewChange={this.reviewChange}
-                reviewUpdate={this.reviewUpdate}
-                {...review}/>)
-                                                      
+                updateReviewInState={this.updateReviewInState}
+                updateReviewInDb={this.updateReviewInDb}
+                {...review}
+                />)
+        
         return (
-            
+
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <h4>What do you think of this movie? Let us know!</h4>
